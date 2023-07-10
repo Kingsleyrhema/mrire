@@ -47,6 +47,21 @@
       display: block;
       margin-bottom: 15px;
     }
+
+    #message {
+      background-color: #f2f2f2;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      padding: 10px 20px;
+      margin-top: 20px;
+    }
+
+    #message p {
+      margin: 0;
+      color: #333;
+      font-size: 14px;
+      line-height: 1.5;
+    }
   </style>
 </head>
 <body>
@@ -61,5 +76,24 @@
       <input spellcheck="false"  type="submit" value="Continue" class="submit-button">
     </form>
   </div>
+  {% if messages %}
+    <div id="message">
+      {% for message in messages %}
+        <p>{{ message }}</p>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+<script>
+  // JavaScript code to display and hide the message
+  document.addEventListener('DOMContentLoaded', function() {
+    var messageElement = document.getElementById('message');
+    if (messageElement) {
+      setTimeout(function() {
+        messageElement.style.display = 'none';
+      }, 10000); // 10 seconds
+    }
+  });
+</script>
 </body>
 </html>

